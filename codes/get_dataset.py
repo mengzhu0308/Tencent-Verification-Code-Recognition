@@ -27,6 +27,8 @@ def get_dataset(root_dir=r'D:\datasets\Tencent-Verification-Code', train_val_spl
     for i in index:
         new_X.append(X[i])
         new_Y.append(Y[i])
+        
+    X, Y = new_X, new_Y
 
     num_train = int(total_samples * train_val_split)
 
