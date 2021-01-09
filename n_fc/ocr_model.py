@@ -16,14 +16,14 @@ def OCR_Model(x, num_classes=26, seq_len=4):
     x = BatchNormalization()(x)
     x = Activation('relu')(x)
 
-    residual = Conv2D(64, 1, use_bias=False)(x)
+    residual = Conv2D(64, 1, strides=2, use_bias=False)(x)
     residual = BatchNormalization()(residual)
     x = SeparableConv2D(64, 3, padding='same', use_bias=False)(x)
     x = BatchNormalization()(x)
     x = Activation('relu')(x)
     x = SeparableConv2D(64, 3, padding='same', use_bias=False)(x)
     x = BatchNormalization()(x)
-    x = MaxPooling2D(pool_size=3, strides=1, padding='same')(x)
+    x = MaxPooling2D(pool_size=3, strides=2, padding='same')(x)
     x = add([x, residual])
 
     residual = Conv2D(128, 1, strides=2, use_bias=False)(x)
